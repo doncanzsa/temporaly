@@ -103,6 +103,7 @@ export default {
 .highlight {
     font-weight: bolder;
     /* text-transform: uppercase; */
-    text-decoration: underline red !important; 
+    background-color: palevioletred;
+    text-decoration: underline red !important;
 }
 </style>

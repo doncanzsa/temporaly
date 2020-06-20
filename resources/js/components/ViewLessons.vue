@@ -157,7 +157,8 @@ import InfoModal from './InfoModal';
                                 lesson.theme,
                                 function () {
                                     let texto = lesson.content.replace(/<[^>]*>?/g, '');
-                                    return `<a class='pointer btn_show' data-toggle='modal' data-idx='${index}' data-target='#InfoModal'>` +  texto.substr(0,100) + `...</a>`;
+                                    return `<a class='pointer btn_show' data-toggle='modal' data-idx='${index}' data-target='#InfoModal'>` +  texto.substr(0,100) + `...</a>
+                                    <span style="display: none;">${texto}</span>`;
                                 },
                                 function () {
                                     return vm.moment(lesson.updated_at).format('LLL');

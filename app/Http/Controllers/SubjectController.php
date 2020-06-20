@@ -38,7 +38,6 @@ class SubjectController extends Controller
 
     public function delete(Request $request)
     {
-        return $request->id;
         if ($request->id) {
             $subject = Subject::find($request->id);
             if ($subject) {
