@@ -9,6 +9,7 @@
 import AddLessons from './components/AddLessons.vue';
 import EditLessons from './components/EditLessons.vue';
 import ViewLessons from './components/ViewLessons.vue';
+import ViewLessonsAjax from './components/ViewLessonsAjax.vue';
 
 // Subjects
 import ViewSubjects from './components/ViewSubjects.vue';
@@ -18,6 +19,11 @@ export const routes = [
         name: 'home',
         path: '/',
         component: ViewLessons
+    },
+    {
+        name: 'ajax-lessons',
+        path: '/lessons/ajax',
+        component: ViewLessonsAjax
     },
     {
         name: 'add-lesson',

@@ -183,6 +183,7 @@ import InfoModal from './InfoModal';
         mounted(){
             let vm = this;
             vm.dataTable = $('#informationTable').DataTable({
+                "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
                 buttons: [
                     'selectRows',
                     'selectColumns',

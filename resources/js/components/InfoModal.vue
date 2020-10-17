@@ -67,10 +67,13 @@ export default {
             let vm = this;
             if (vm.filter && vm.filter.length>0) {
                 let wordArray = this.filter.split(' ');
+                
                 let new_content = vm.content;
                 wordArray.forEach(word => {
-                    const reg = new RegExp(word,'gi');
-                    new_content = new_content.replace(reg,'<span class="highlight">' + word + '</span>');
+                    if(word!="" && word!=" ") {
+                        const reg = new RegExp(word,'gi');
+                        new_content = new_content.replace(reg,'<span class="highlight">' + word + '</span>');
+                    }
                 });
                 return new_content;
             } else {

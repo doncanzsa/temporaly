@@ -24,6 +24,28 @@ class LessonController extends Controller
         }
     }
 
+    public function getBySubjectIdAndSearch(Request $request)
+    {   
+        if($request->search && $request->search!="" && $request->id) {
+            
+            $words = explode("+", $request->search);
+            $lesson = Lesson::where('subject_id', $request->id)
+            ->where(function ($q) use ($words) {
+                foreach ($words as $word) {
+                    $q->orWhere('content', 'like', "%$word%");
+                }
+            })
+            ->with('subjects')->get();
+            return $lesson;
+        } else if ($request->id) {
+            $lesson = Lesson::where('subject_id', $request->id)
+            ->with('subjects')->get();
+            return $lesson;
+        } else {
+            return response([]);
+        }
+    }
+
     public function save(Request $request )
     {
         if ($request->id) {

@@ -24,6 +24,7 @@ Route::group(['prefix' => 'subjects'], function () {
 Route::group(['prefix' => 'lessons'], function () {
     Route::get('',                  'LessonController@index');
     Route::get('subject/{id}',      'LessonController@getBySubjectId');
+    Route::get('search',      'LessonController@getBySubjectIdAndSearch');
     Route::get('show/{id}',         'LessonController@show');
     Route::post('save',             'LessonController@save');
     Route::delete('delete/{id}',    'LessonController@delete');
