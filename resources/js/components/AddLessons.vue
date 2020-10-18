@@ -32,7 +32,13 @@
                                 </div>
                             </div>
                             <div class="col-4 text-right">
-                                <button class="btn btn-primary" @click.prevent="saveItem()">Guardar</button>
+                                <button class="btn btn-primary" :disabled="saving" @click.prevent="saveItem()">
+                                    <span v-if="saving">
+                                        <span class="spinner-border spinner-border-sm mr-1" role="status" aria-hidden="true"></span>
+                                        Guardando...
+                                    </span>
+                                    <span v-else>Guardar</span>
+                                </button>
                                 <button class="btn btn-secondary" @click.prevent="cleanAll()">Limpiar</button>
                                 <router-link to="/" class="btn btn-light">Volver</router-link>
                             </div>
@@ -66,7 +72,8 @@
                 content: `<h2>Text Example</h2>`,
                 editorOption: {
                 // Some Quill options...
-                }
+                },
+                saving: false,
             }
         },
         methods: {
@@ -84,6 +91,7 @@
             },
             saveData(dataSend) {
                 let vm = this;
+                vm.saving = true;
                 this.axios
                     .post('/api/lessons/save', dataSend)
                     .then(response => {
@@ -116,7 +124,10 @@
                             text: 'Ups algo salio mal...!'
                         });
                     })
-                    .finally(() => this.onSubmit = false);
+                    .finally(() => {
+                        this.onSubmit = false;
+                        this.saving = false;
+                    });
             },
             getSubjects() {
                 let vm = this;
