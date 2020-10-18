@@ -2018,6 +2018,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2027,7 +2033,8 @@ __webpack_require__.r(__webpack_exports__);
       Subjects: [],
       content: "<h2>Text Example</h2>",
       editorOption: {// Some Quill options...
-      }
+      },
+      saving: false
     };
   },
   methods: {
@@ -2047,6 +2054,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       var vm = this;
+      vm.saving = true;
       this.axios.post('/api/lessons/save', dataSend).then(function (response) {
         // this.$router.push({name: 'home'})
         var data = response.data;
@@ -2078,7 +2086,8 @@ __webpack_require__.r(__webpack_exports__);
           text: 'Ups algo salio mal...!'
         });
       })["finally"](function () {
-        return _this.onSubmit = false;
+        _this.onSubmit = false;
+        _this.saving = false;
       });
     },
     getSubjects: function getSubjects() {
@@ -2197,6 +2206,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2207,7 +2222,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       Subjects: [],
       content: "<h2>Text Example</h2>",
       editorOption: {// Some Quill options...
-      }
+      },
+      saving: false
     };
   },
   methods: {
@@ -2227,6 +2243,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var _this = this;
 
       var vm = this;
+      vm.saving = true;
       this.axios.post('/api/lessons/save', dataSend).then(function (response) {
         // this.$router.push({name: 'home'})
         var data = response.data;
@@ -2261,7 +2278,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           text: 'Ups algo salio mal...!'
         });
       })["finally"](function () {
-        return _this.onSubmit = false;
+        _this.onSubmit = false;
+        _this.saving = false;
       });
     },
     getSubjects: function getSubjects() {
@@ -75484,6 +75502,7 @@ var render = function() {
                     "button",
                     {
                       staticClass: "btn btn-primary",
+                      attrs: { disabled: _vm.saving },
                       on: {
                         click: function($event) {
                           $event.preventDefault()
@@ -75491,7 +75510,20 @@ var render = function() {
                         }
                       }
                     },
-                    [_vm._v("Guardar")]
+                    [
+                      _vm.saving
+                        ? _c("span", [
+                            _c("span", {
+                              staticClass:
+                                "spinner-border spinner-border-sm mr-1",
+                              attrs: { role: "status", "aria-hidden": "true" }
+                            }),
+                            _vm._v(
+                              "\n                                    Guardando...\n                                "
+                            )
+                          ])
+                        : _c("span", [_vm._v("Guardar")])
+                    ]
                   ),
                   _vm._v(" "),
                   _c(
@@ -75725,6 +75757,7 @@ var render = function() {
                     "button",
                     {
                       staticClass: "btn btn-primary",
+                      attrs: { disabled: _vm.saving },
                       on: {
                         click: function($event) {
                           $event.preventDefault()
@@ -75732,7 +75765,20 @@ var render = function() {
                         }
                       }
                     },
-                    [_vm._v("Guardar Cambios")]
+                    [
+                      _vm.saving
+                        ? _c("span", [
+                            _c("span", {
+                              staticClass:
+                                "spinner-border spinner-border-sm mr-1",
+                              attrs: { role: "status", "aria-hidden": "true" }
+                            }),
+                            _vm._v(
+                              "\n                                    Guardando...\n                                "
+                            )
+                          ])
+                        : _c("span", [_vm._v("Guardar Cambios")])
+                    ]
                   ),
                   _vm._v(" "),
                   _c(
